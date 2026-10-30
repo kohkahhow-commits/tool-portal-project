@@ -8,9 +8,12 @@
 
 ## Project Structure
 
-The project is nearly empty for now. Everything lives at the top level:
-
 - `CLAUDE.md` — this file.
+- `index.html` — the homepage, with the grid of tool cards.
+- `css/style.css` — shared styles and the light/dark color settings.
+- `js/theme.js` — the theme toggle, used by every page.
+- `tools/tool-1/` — placeholder tool page, to be replaced by the
+  Robot Arm Picker.
 
 Update this section as files and folders are added.
 
@@ -41,8 +44,9 @@ Each tool explains its results in plain language.
 ### Phases
 
 **Phase 1: Portal + first tool**
-- Homepage, shared header, light/dark theme toggle, responsive layout.
-- Robot Arm Picker: a 2D side view of a two-joint arm that picks up a
+- [x] Portal: homepage, shared header, light/dark theme toggle,
+  responsive layout (with a placeholder "Tool 1 — coming soon" card).
+- [ ] Robot Arm Picker: a 2D side view of a two-joint arm that picks up a
   block and drops it in a bin.
   - Sliders mode: set the joint angles and see where the tip goes
     (forward kinematics).

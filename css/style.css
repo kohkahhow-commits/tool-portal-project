@@ -1,0 +1,140 @@
+/* Shared styles for every page. Neutral placeholder look; the visual
+   design will be chosen later. Colors are defined once per theme. */
+
+:root,
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f4f4f4;
+  --text: #1a1a1a;
+  --text-muted: #555555;
+  --border: #c4c4c4;
+  --focus: #1a56db;
+}
+
+:root[data-theme="dark"] {
+  --bg: #121212;
+  --surface: #1f1f1f;
+  --text: #ededed;
+  --text-muted: #b3b3b3;
+  --border: #4a4a4a;
+  --focus: #8ab4f8;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Centered content column with a 16px gutter on small screens. */
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Header shared by every page */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.5rem;
+}
+
+.site-title {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.theme-toggle {
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+main {
+  padding: 1.5rem 0 3rem;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.intro {
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+}
+
+/* Tool card grid: 1 column on phones, more as space allows. */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tool-card {
+  display: block;
+  height: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  text-decoration: none;
+}
+
+.tool-card:hover {
+  border-color: var(--text-muted);
+}
+
+.tool-card h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.125rem;
+}
+
+.tool-card p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* "← All tools" link on tool pages */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: 0.5rem;
+}
