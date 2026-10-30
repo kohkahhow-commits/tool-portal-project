@@ -1,0 +1,130 @@
+/* Layout for the Robot Arm Picker. Colors come from css/style.css. */
+
+.arm-layout {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 48rem) {
+  .arm-layout {
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+  }
+}
+
+.btn {
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn[aria-pressed="true"] {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.mode-switch {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+#arm-canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 46 / 25;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+#arm-canvas.clickable {
+  cursor: crosshair;
+}
+
+.slider {
+  margin-bottom: 1rem;
+}
+
+.slider label {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.slider input {
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  accent-color: var(--arm);
+}
+
+.hint {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.status {
+  min-height: 1.5em;
+  margin: 0.75rem 0 0;
+  font-weight: 600;
+}
+
+.status.ok {
+  color: var(--ok);
+}
+
+.status.warn {
+  color: var(--warn);
+}
+
+.readout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.readout dt {
+  color: var(--text-muted);
+}
+
+.readout dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.formula {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.how-it-works {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.how-it-works summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.how-it-works p {
+  margin: 0.75rem 0 0;
+}

@@ -9,6 +9,13 @@
   --text-muted: #555555;
   --border: #c4c4c4;
   --focus: #1a56db;
+  /* Drawing colors for tools */
+  --arm: #333333;
+  --block: #b4530b;
+  --bin: #5c5c5c;
+  --grid: #e4e4e4;
+  --warn: #b00020;
+  --ok: #1b6e2a;
 }
 
 :root[data-theme="dark"] {
@@ -18,6 +25,12 @@
   --text-muted: #b3b3b3;
   --border: #4a4a4a;
   --focus: #8ab4f8;
+  --arm: #d6d6d6;
+  --block: #f0a35e;
+  --bin: #a8a8a8;
+  --grid: #2a2a2a;
+  --warn: #ff8a94;
+  --ok: #7bd88f;
 }
 
 *,

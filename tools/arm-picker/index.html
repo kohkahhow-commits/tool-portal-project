@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robot Arm Picker — Robotics Tool Portal</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="arm.css">
+  <script src="../../js/theme.js"></script>
+  <script src="arm.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../../index.html">Robotics Tool Portal</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Dark theme</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a class="back-link" href="../../index.html">← All tools</a>
+    <h1>Robot Arm Picker</h1>
+    <p class="intro">Move the robot arm to pick up the orange block and drop it in the bin.</p>
+
+    <div class="arm-layout">
+      <div class="arm-stage">
+        <div class="mode-switch" role="group" aria-label="Control mode">
+          <button type="button" class="btn" data-mode="sliders" aria-pressed="true">Sliders</button>
+          <button type="button" class="btn" data-mode="target" aria-pressed="false">Click a target</button>
+        </div>
+        <canvas id="arm-canvas" role="img" aria-label="Side view of the robot arm, the block and the bin"></canvas>
+      </div>
+
+      <div class="arm-panel">
+        <div id="slider-controls">
+          <div class="slider">
+            <label for="theta1">Shoulder angle θ1 <output id="theta1-value" for="theta1">90°</output></label>
+            <input id="theta1" type="range" min="0" max="180" step="1" value="90">
+          </div>
+          <div class="slider">
+            <label for="theta2">Elbow angle θ2 <output id="theta2-value" for="theta2">−90°</output></label>
+            <input id="theta2" type="range" min="-160" max="160" step="1" value="-90">
+          </div>
+        </div>
+        <p id="target-hint" class="hint" hidden>Tap or click inside the picture. The arm works out its own angles and moves its tip there.</p>
+
+        <div class="actions">
+          <button type="button" class="btn" id="grip">Grip</button>
+          <button type="button" class="btn" id="new-round">New round</button>
+        </div>
+
+        <p id="status" class="status" aria-live="polite"></p>
+        <p id="floor-warning" class="status warn" hidden></p>
+
+        <dl class="readout">
+          <dt>Shoulder θ1</dt><dd id="out-theta1"></dd>
+          <dt>Elbow θ2</dt><dd id="out-theta2"></dd>
+          <dt>Tip x</dt><dd id="out-x"></dd>
+          <dt>Tip y</dt><dd id="out-y"></dd>
+          <dt>Gripper</dt><dd id="out-grip"></dd>
+        </dl>
+        <p class="formula"><code id="formula-x"></code><br><code id="formula-y"></code></p>
+
+        <details class="how-it-works" open>
+          <summary>How it works</summary>
+          <div data-for="sliders">
+            <p>The arm has two straight parts: an upper arm (12&nbsp;cm) and a forearm (9&nbsp;cm). You choose how much each joint turns, and the tool works out where the tip ends up. Going from angles to a position like this is called <strong>forward kinematics</strong>.</p>
+            <p>θ1 is measured from the floor. θ2 is measured from the line of the upper arm, so it adds on top of θ1. That's why the forearm's direction is θ1&nbsp;+&nbsp;θ2 in the formulas above.</p>
+          </div>
+          <div data-for="target" hidden>
+            <p>Here you do the reverse: you pick where the tip should go, and the tool works out the joint angles. Going from a position to angles is called <strong>inverse kinematics</strong>.</p>
+            <p>The base, the elbow and the tip form a triangle with known side lengths. A triangle rule called the <em>law of cosines</em> gives the elbow angle, and from that the shoulder angle follows. There are usually two answers (elbow up or elbow down); the tool picks elbow up when it can.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
