@@ -1,36 +1,47 @@
-/* Shared styles for every page. Neutral placeholder look; the visual
-   design will be chosen later. Colors are defined once per theme. */
+/* Shared styles for every page — "Classroom" design: rounded shapes,
+   teal accent, Nunito headings and Atkinson Hyperlegible body text.
+   Colors are defined once per theme. */
 
 :root,
 :root[data-theme="light"] {
   --bg: #ffffff;
-  --surface: #f4f4f4;
-  --text: #1a1a1a;
-  --text-muted: #555555;
-  --border: #c4c4c4;
-  --focus: #1a56db;
+  --surface: #f2f7f5;
+  --text: #1c2b27;
+  --text-muted: #4b5e58;
+  --border: #cfe0da;
+  --accent: #0f766e;
+  --on-accent: #ffffff;
+  --chip: #dcefea;
+  --chip-text: #0b4f49;
+  --focus: #0f766e;
   /* Drawing colors for tools */
-  --arm: #333333;
-  --block: #b4530b;
-  --bin: #5c5c5c;
-  --grid: #e4e4e4;
-  --warn: #b00020;
-  --ok: #1b6e2a;
+  --arm: #0f766e;
+  --block: #c2410c;
+  --bin: #4b5e58;
+  --grid: #e3ece9;
+  --warn: #b42318;
+  --warn-bg: #fdecea;
+  --ok: #0b4f49;
 }
 
 :root[data-theme="dark"] {
-  --bg: #121212;
-  --surface: #1f1f1f;
-  --text: #ededed;
-  --text-muted: #b3b3b3;
-  --border: #4a4a4a;
-  --focus: #8ab4f8;
-  --arm: #d6d6d6;
-  --block: #f0a35e;
-  --bin: #a8a8a8;
-  --grid: #2a2a2a;
-  --warn: #ff8a94;
-  --ok: #7bd88f;
+  --bg: #101917;
+  --surface: #18241f;
+  --text: #e8f1ee;
+  --text-muted: #a8bdb6;
+  --border: #2c3f38;
+  --accent: #5eead4;
+  --on-accent: #0b1f1b;
+  --chip: #1f3a33;
+  --chip-text: #a7f3e4;
+  --focus: #5eead4;
+  --arm: #5eead4;
+  --block: #fdba74;
+  --bin: #a8bdb6;
+  --grid: #1e2d28;
+  --warn: #ff9b8f;
+  --warn-bg: #3a1f1c;
+  --ok: #a7f3e4;
 }
 
 *,
@@ -43,9 +54,16 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-family: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+h1,
+h2,
+.site-title {
+  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 800;
 }
 
 a {
@@ -67,81 +85,159 @@ a {
 
 /* Header shared by every page */
 .site-header {
-  border-bottom: 1px solid var(--border);
   background: var(--surface);
 }
 
 .site-header .container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  min-height: 3.5rem;
+  gap: 0.75rem;
+  min-height: 4.5rem;
 }
 
 .site-title {
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  font-size: 1.25rem;
   text-decoration: none;
 }
 
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* Pill-shaped button, shared by the theme toggle and tool controls */
+.btn,
 .theme-toggle {
   min-height: 44px;
-  padding: 0 1rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  padding: 0 1.25rem;
+  border: 2px solid var(--border);
+  border-radius: 999px;
   background: var(--bg);
   color: var(--text);
   font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
 }
 
+.btn-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
 main {
-  padding: 1.5rem 0 3rem;
+  padding: 3rem 0 4rem;
 }
 
 h1 {
-  margin: 0 0 0.5rem;
-  font-size: 1.75rem;
-  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  font-size: 2.25rem;
+  line-height: 1.1;
 }
 
 .intro {
-  margin: 0 0 1.5rem;
+  max-width: 38rem;
+  margin: 0 0 2rem;
+  font-size: 1.25rem;
   color: var(--text-muted);
 }
 
 /* Tool card grid: 1 column on phones, more as space allows. */
 .tool-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: 1.25rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .tool-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   height: 100%;
   padding: 1rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  border: 2px solid var(--border);
+  border-radius: 20px;
   background: var(--surface);
   text-decoration: none;
 }
 
 .tool-card:hover {
-  border-color: var(--text-muted);
+  border-color: var(--accent);
+}
+
+.card-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  background: var(--bg);
+}
+
+.card-art .art-arm { stroke: var(--arm); }
+.card-art .art-joint { fill: var(--bg); stroke: var(--arm); }
+.card-art .art-base { fill: var(--arm); }
+.card-art .art-line { stroke: var(--text-muted); }
+.card-art .art-block { fill: var(--block); }
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 0.25rem 0.25rem;
 }
 
 .tool-card h2 {
-  margin: 0 0 0.25rem;
-  font-size: 1.125rem;
+  margin: 0;
+  font-size: 1.5rem;
 }
 
 .tool-card p {
   margin: 0;
   color: var(--text-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.chip {
+  padding: 0.125rem 0.625rem;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--chip-text);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.card-cta {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0.5rem;
+  padding: 0 1.25rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
 }
 
 /* "← All tools" link on tool pages */
@@ -150,4 +246,6 @@ h1 {
   align-items: center;
   min-height: 44px;
   margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-weight: 700;
 }

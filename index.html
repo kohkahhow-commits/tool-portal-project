@@ -4,13 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Robotics Tool Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito:wght@700;800&family=Source+Code+Pro:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/theme.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="container">
-      <a class="site-title" href="index.html">Robotics Tool Portal</a>
+      <a class="site-title" href="index.html">
+        <span class="logo" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M8 20V10l7-4"/><circle cx="8" cy="10" r="1.6"/><path d="M15 6l3 3"/></svg>
+        </span>
+        Robotics Tool Portal
+      </a>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Dark theme</button>
     </div>
   </header>
@@ -22,8 +30,24 @@
     <ul class="tool-grid">
       <li>
         <a class="tool-card" href="tools/arm-picker/index.html">
-          <h2>Robot Arm Picker</h2>
-          <p>Move a two-joint arm to pick up a block and drop it in a bin.</p>
+          <svg class="card-art" viewBox="0 0 460 220" aria-hidden="true">
+            <line class="art-line" x1="20" y1="190" x2="440" y2="190" stroke-width="3" stroke-linecap="round"/>
+            <path class="art-line" d="M80 158 V184 Q80 190 86 190 H134 Q140 190 140 184 V158" fill="none" stroke-width="5" stroke-linecap="round"/>
+            <rect class="art-block" x="318" y="166" width="24" height="24" rx="5"/>
+            <path class="art-arm" d="M230 190 L190 90 L300 70" fill="none" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle class="art-base" cx="230" cy="190" r="12"/>
+            <circle class="art-joint" cx="190" cy="90" r="8" stroke-width="4"/>
+            <path class="art-arm" d="M284 84 V70 H316 V84" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="card-body">
+            <div class="chips">
+              <span class="chip">Forward kinematics</span>
+              <span class="chip">Inverse kinematics</span>
+            </div>
+            <h2>Robot Arm Picker</h2>
+            <p>Move a two-joint arm to pick up a block and drop it in a bin.</p>
+            <span class="card-cta">Try it →</span>
+          </div>
         </a>
       </li>
     </ul>

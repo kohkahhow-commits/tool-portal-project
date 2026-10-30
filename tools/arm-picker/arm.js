@@ -179,7 +179,7 @@
 
   function setMode(mode) {
     state.mode = mode;
-    document.querySelectorAll(".mode-switch .btn").forEach(function (b) {
+    document.querySelectorAll(".mode-switch button").forEach(function (b) {
       b.setAttribute("aria-pressed", String(b.dataset.mode === mode));
     });
     $("slider-controls").hidden = mode !== "sliders";
@@ -236,7 +236,7 @@
 
   function readColors() {
     var css = getComputedStyle(document.documentElement);
-    ["--arm", "--block", "--bin", "--grid", "--warn", "--ok", "--text", "--text-muted", "--focus"].forEach(function (name) {
+    ["--arm", "--block", "--bin", "--grid", "--warn", "--ok", "--text", "--text-muted", "--focus", "--surface"].forEach(function (name) {
       colors[name] = css.getPropertyValue(name).trim();
     });
   }
@@ -321,11 +321,19 @@
 
     // Arm
     var armColor = pos.tip.y < 0 ? colors["--warn"] : colors["--arm"];
-    var armWidth = Math.max(4, 0.8 * s);
+    var armWidth = Math.max(5, 1.1 * s);
     line({ x: 0, y: 0 }, pos.elbow, armColor, armWidth);
     line(pos.elbow, pos.tip, armColor, armWidth);
     dot({ x: 0, y: 0 }, 0.9, armColor);
-    dot(pos.elbow, 0.6, colors["--text-muted"]);
+    // Elbow: a hollow ring
+    var e = toPx(pos.elbow);
+    ctx.fillStyle = colors["--surface"];
+    ctx.strokeStyle = armColor;
+    ctx.lineWidth = Math.max(2, 0.3 * s);
+    ctx.beginPath();
+    ctx.arc(e.x, e.y, 0.7 * s, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
 
     // Gripper: two fingers hanging from the tip, open or closed
     var tip = pos.tip, spread = state.gripping ? BLOCK / 2 + 0.15 : BLOCK / 2 + 0.6;
@@ -339,9 +347,12 @@
 
   function onCanvasPointer(e) {
     if (state.mode !== "target") return;
+    // Measure from inside the canvas border, where the drawing starts.
     var rect = canvas.getBoundingClientRect();
-    var ratio = canvas.width / rect.width;
-    var p = fromPx((e.clientX - rect.left) * ratio, (e.clientY - rect.top) * ratio);
+    var ratio = canvas.width / canvas.clientWidth;
+    var px = e.clientX - rect.left - canvas.clientLeft;
+    var py = e.clientY - rect.top - canvas.clientTop;
+    var p = fromPx(px * ratio, py * ratio);
     state.target = p;
     var result = inverse(p.x, p.y);
     if (result.error) {
@@ -362,7 +373,7 @@
     $("theta2").addEventListener("input", function (e) { stopAnimation(); setAngles(state.t1, Number(e.target.value)); });
     $("grip").addEventListener("click", grip);
     $("new-round").addEventListener("click", newRound);
-    document.querySelectorAll(".mode-switch .btn").forEach(function (b) {
+    document.querySelectorAll(".mode-switch button").forEach(function (b) {
       b.addEventListener("click", function () { setMode(b.dataset.mode); });
     });
     canvas.addEventListener("pointerdown", onCanvasPointer);

@@ -23,6 +23,17 @@ Update this section as files and folders are added.
 2. Users can toggle between a light and a dark theme. The default is the light theme.
 3. Text must stay easy to read, with good contrast, in both the light and the dark theme.
 
+## Visual Design
+
+"Classroom" style, chosen from three proposals:
+- Fonts: Nunito (headings), Atkinson Hyperlegible (body text),
+  Source Code Pro (formulas). Loaded from Google Fonts, with system
+  fonts as a fallback.
+- Colors: white with a teal accent (light theme); very dark green with
+  bright teal (dark theme). All colors live as variables in
+  `css/style.css`. Reuse them rather than adding new ones.
+- Shapes: rounded corners, pill-shaped buttons, tinted cards.
+
 ## Feature Plan
 
 A Robotics web portal where students try out small, interactive tools.

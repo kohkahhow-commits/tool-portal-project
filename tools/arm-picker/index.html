@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Robot Arm Picker — Robotics Tool Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito:wght@700;800&family=Source+Code+Pro:wght@400;500&display=swap">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="arm.css">
   <script src="../../js/theme.js"></script>
@@ -12,7 +15,12 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <a class="site-title" href="../../index.html">Robotics Tool Portal</a>
+      <a class="site-title" href="../../index.html">
+        <span class="logo" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M8 20V10l7-4"/><circle cx="8" cy="10" r="1.6"/><path d="M15 6l3 3"/></svg>
+        </span>
+        Robotics Tool Portal
+      </a>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Dark theme</button>
     </div>
   </header>
@@ -25,8 +33,8 @@
     <div class="arm-layout">
       <div class="arm-stage">
         <div class="mode-switch" role="group" aria-label="Control mode">
-          <button type="button" class="btn" data-mode="sliders" aria-pressed="true">Sliders</button>
-          <button type="button" class="btn" data-mode="target" aria-pressed="false">Click a target</button>
+          <button type="button" data-mode="sliders" aria-pressed="true">Sliders</button>
+          <button type="button" data-mode="target" aria-pressed="false">Click a target</button>
         </div>
         <canvas id="arm-canvas" role="img" aria-label="Side view of the robot arm, the block and the bin"></canvas>
       </div>
@@ -45,7 +53,7 @@
         <p id="target-hint" class="hint" hidden>Tap or click inside the picture. The arm works out its own angles and moves its tip there.</p>
 
         <div class="actions">
-          <button type="button" class="btn" id="grip">Grip</button>
+          <button type="button" class="btn btn-primary" id="grip">Grip</button>
           <button type="button" class="btn" id="new-round">New round</button>
         </div>
 
@@ -53,11 +61,11 @@
         <p id="floor-warning" class="status warn" hidden></p>
 
         <dl class="readout">
-          <dt>Shoulder θ1</dt><dd id="out-theta1"></dd>
-          <dt>Elbow θ2</dt><dd id="out-theta2"></dd>
-          <dt>Tip x</dt><dd id="out-x"></dd>
-          <dt>Tip y</dt><dd id="out-y"></dd>
-          <dt>Gripper</dt><dd id="out-grip"></dd>
+          <div class="tile big"><dt>Tip x</dt><dd id="out-x"></dd></div>
+          <div class="tile big"><dt>Tip y</dt><dd id="out-y"></dd></div>
+          <div class="tile"><dt>Shoulder θ1</dt><dd id="out-theta1"></dd></div>
+          <div class="tile"><dt>Elbow θ2</dt><dd id="out-theta2"></dd></div>
+          <div class="tile wide"><dt>Gripper</dt><dd id="out-grip"></dd></div>
         </dl>
         <p class="formula"><code id="formula-x"></code><br><code id="formula-y"></code></p>
 
